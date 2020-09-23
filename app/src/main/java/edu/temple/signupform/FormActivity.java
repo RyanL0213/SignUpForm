@@ -17,23 +17,26 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final String password = "ThisIsPassword";
-        final String email = "myemail@email.com";
+
         final EditText useremail = findViewById(R.id.editTextTextEmailAddress);
         final EditText userpassword = findViewById(R.id.editTextTextPassword);
-
+        final EditText passwordcomfirm = findViewById(R.id.editTextTextPassword2);
+        final EditText name = findViewById(R.id.editTextTextPersonName);
         Button loginbutton = findViewById(R.id.button);
         loginbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
             String userinputemail = useremail.getEditableText().toString();
             String userinputpassword = userpassword.getEditableText().toString();
-            if(userinputemail.isEmpty()||userinputpassword.isEmpty())
-                Toast.makeText(FormActivity.this,"Please enter both of your email and password.",Toast.LENGTH_SHORT).show();
-            else if(userinputemail.equals(email)&&userinputpassword.equals(password))
-                Toast.makeText(FormActivity.this,"Welcome, Jane Dough, to the SignUpForm App",Toast.LENGTH_SHORT).show();
+            String passwordcomfirmation = passwordcomfirm .getEditableText().toString();
+            String username = name.getEditableText().toString();
+
+            if(userinputemail.isEmpty()||userinputpassword.isEmpty()||passwordcomfirmation.isEmpty()||username.isEmpty())
+                Toast.makeText(FormActivity.this,"Please fill out all the field.",Toast.LENGTH_SHORT).show();
+            else if(userinputpassword.equals(passwordcomfirmation))
+                Toast.makeText(FormActivity.this,"Welcome, "+ username + ", to the SignUpForm App",Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(FormActivity.this,"Login information is wrong, check your email and password.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormActivity.this,"Error: Password and password comfirmation does not match!.",Toast.LENGTH_SHORT).show();
 
             }
 
